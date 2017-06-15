@@ -1,0 +1,5 @@
+target/*
+*.iml
+hs_err*
+phantomjsdriver.log
+.idea/
