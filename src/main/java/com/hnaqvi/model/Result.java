@@ -1,10 +1,12 @@
 package com.hnaqvi.model;
 
+import java.math.BigDecimal;
+
 public class Result {
 
     private String title;
     private String size;
-    private String unit_price;
+    private BigDecimal unit_price;
     private String description;
 
 
@@ -26,11 +28,11 @@ public class Result {
         this.size = size;
     }
 
-    public String getUnit_price() {
+    public BigDecimal getUnit_price() {
         return unit_price;
     }
 
-    public void setUnit_price(String unit_price) {
+    public void setUnit_price(BigDecimal unit_price) {
         this.unit_price = unit_price;
     }
 

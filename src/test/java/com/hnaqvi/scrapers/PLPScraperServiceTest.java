@@ -15,6 +15,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -69,10 +70,9 @@ public class PLPScraperServiceTest {
         assertEquals(2, results.size());
         assertEquals("Product 1", results.get(0).getTitle());
         assertEquals("Product 1 Link", results.get(0).getUrl());
-        assertEquals("2.00", results.get(0).getUnit_price());
+        assertEquals(0, new BigDecimal("2.00").compareTo(results.get(0).getUnit_price()));
         assertEquals("Product 2", results.get(1).getTitle());
         assertEquals("Product 2 Link", results.get(1).getUrl());
-        assertEquals("33.10", results.get(1).getUnit_price());
-
+        assertEquals(0, new BigDecimal("33.10").compareTo(results.get(1).getUnit_price()));
     }
 }

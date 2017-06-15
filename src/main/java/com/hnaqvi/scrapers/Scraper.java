@@ -6,10 +6,11 @@ import com.hnaqvi.model.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 
 @Service
 public class Scraper {
-
 
     @Autowired
     PLPScraperService plPScraperService;
@@ -33,6 +34,13 @@ public class Scraper {
             }
         });
 
+        BigDecimal total = results.getResults().
+                stream().
+                map(result -> result.getUnit_price())
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO).setScale(2);
+
+        results.setTotal(total);
 
         return results;
     }
