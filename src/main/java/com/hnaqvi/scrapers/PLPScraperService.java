@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -60,8 +62,8 @@ public class PLPScraperService {
         return string.split("/")[0].substring(1);
     }
 
-    private String getUnitPrice(WebElement e) {
-        return stripCurrencyAndSlashPostfix(e.findElement(By.xpath(xpathProductListProductInfoUnitPrice)).getText());
+    private BigDecimal getUnitPrice(WebElement e) {
+        return new BigDecimal(stripCurrencyAndSlashPostfix(e.findElement(By.xpath(xpathProductListProductInfoUnitPrice)).getText())).setScale(2);
     }
 
 

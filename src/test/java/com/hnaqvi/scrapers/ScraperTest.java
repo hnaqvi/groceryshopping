@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -41,6 +42,8 @@ public class ScraperTest {
     public void setup() throws Exception{
         when(resultMock1.getUrl()).thenReturn(RESULT_MOCK_1_URL);
         when(resultMock2.getUrl()).thenReturn(RESULT_MOCK_2_URL);
+        when(resultMock1.getUnit_price()).thenReturn(new BigDecimal("22.35"));
+        when(resultMock2.getUnit_price()).thenReturn(new BigDecimal("40.3"));
         when(pdpScraperServiceMock.scrape(RESULT_MOCK_1_URL, resultMock1)).thenReturn(resultMock1);
         when(pdpScraperServiceMock.scrape(RESULT_MOCK_2_URL, resultMock2)).thenReturn(resultMock2);
     }
@@ -70,6 +73,20 @@ public class ScraperTest {
         verify(pdpScraperServiceMock).scrape(RESULT_MOCK_2_URL, resultMock2);
 
         assertEquals(2, results.getResults().size());
+
+    }
+
+    @Test
+    public void testTotal() throws Exception {
+
+        when(plpScraperServiceMock.scrape("some_url")).thenReturn(Arrays.asList(resultMock1, resultMock2));
+
+        Results results  = testObject.scrape("some_url");
+
+        verify(pdpScraperServiceMock).scrape(RESULT_MOCK_1_URL, resultMock1);
+        verify(pdpScraperServiceMock).scrape(RESULT_MOCK_2_URL, resultMock2);
+
+        assertEquals(0, new BigDecimal("62.65").compareTo(results.getTotal()));
 
     }
 
