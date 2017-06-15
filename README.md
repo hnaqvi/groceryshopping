@@ -10,7 +10,7 @@ Make sure these are installed before proceeding
 $ mvn package
 ```
 
-## Excution
+## Execution
 #### PhantomJS enviroment config
 
 Application requires the following env variable to be set `phantomjs.binary.path`
