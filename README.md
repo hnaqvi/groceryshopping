@@ -2,18 +2,15 @@
 Webscraping using SpringBoot and PhantomJs
 
 ## Installing dependencies
----
 Groceryshopping requires [Java 1.8](https://www.java.com/en/download/),  [PhantomJS](http://phantomjs.org/). It Also requires [Maven](https://maven.apache.org/download.cgi) to build
 Make sure these are installed before proceeding
 
 ## Building
----
 ```sh
 $ mvn package
 ```
 
 ## Excution
----
 #### PhantomJS enviroment config
 
 Application requires the following env variable to be set `phantomjs.binary.path`
